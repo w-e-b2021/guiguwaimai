@@ -1,0 +1,52 @@
+{
+    "diancan":{
+    "fenlei|10": [{
+        "id": "@increment(1)",
+        "name|+1": ["优惠", "折扣", "香浓甜粥", "营养咸粥", "爽口凉菜", "精选套餐", "双拼果汁", "小吃主食","小吃主食","小吃主食"],
+        "foods|3-5": [{
+            "id": "@increment(1)",
+            "name": "@cword('脆皮南瓜红豆八宝香米酱甜咸',2,5)@cword('粥卷菜面汤汁饭')",
+            "sale_num_month|5-120": 30,
+            "haopin_rate": "@integer(70,100)%",
+            "row_price|30-50": 19,
+            "now_price": "",
+            "discount": "@float(1,9,2,2)",
+            "img": "http://127.0.0.1:5500/public/shangjia_imgs/tu@integer(1,12).jpg",
+            "distrip":"@csentence()"
+        }]
+    }]},
+    "pinjia": {
+        "serve_attitude": "@float(1,4,1,1)",
+        "shop_quelity": "@float(1,4,1,1)",
+        "fenlei|2-5": [{
+            "name|+1": ["满意", "不满意", "追加", "差评", "味道很棒"],
+            "list|3-5": [{
+                "name": "@cname()",
+                "pinfen_star|1-5": 1,
+                "emit_date": "@datetime()",
+                "content": "@cparagraph(1,2)",
+                "recommond|2-5": [
+                    "@cword(3,6)"
+                ],
+                "touxiang_img": 1
+            }]
+        }]
+    },
+    "shangjia": {
+        "name": "嘉禾一品",
+        "shop_address": "隆回店",
+        "shop_introduce": "@cparagraph()",
+        "pinfen": "@float(1,4,1,1)",
+        "sale_num_month|200-300": 200,
+        "delivery_time": "@integer(10,60)分钟",
+        "distance": "@integer(100,1000)m",
+        "qisong|1": [15, 20, 25, 10],
+        "delivery_tip": "@integer(2,5)",
+        "deliveryer": "小象专送",
+        "banner_img": "http://127.0.0.1:5500/public/shangjia_imgs/banner.jpg",
+        "activity|1-8": [{
+            "name|+1": ["首单", "满减", "特价", "特价", "特价"],
+            "content": "@csentence()"
+        }]
+    }
+}
