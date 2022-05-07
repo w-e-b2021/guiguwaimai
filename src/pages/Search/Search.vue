@@ -8,7 +8,7 @@
         </button>
       </section>
       <div class="wrapper" v-show="searchShops.length">
-        <ul class="content">
+        <ul ref="content" class="content">
           <li v-for="shop in searchShops" :key="shop._id"><ShopLists :shop="shop"></ShopLists></li>
         </ul>
       </div>
@@ -54,12 +54,19 @@ export default {
       this.only_once++
       let { code, data } = await reqSearchShops(this.keyword)
       if (code === 0) {
-        this.getSearchShops(data)
-        if (data.length) {
-          this.$nextTick(() => {
-            this.bs.refresh()
-          })
-        }
+        this.getSearchShops({
+          data,
+          callback: () => {
+            if (data.length) {
+              this.$nextTick(() => {
+                setTimeout(() => {
+                  this.bs.refresh()
+                }, 1000)
+              })
+            }
+          }
+        })
+
         this.keyword = ''
       }
     }

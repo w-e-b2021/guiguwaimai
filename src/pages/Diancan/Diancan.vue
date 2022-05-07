@@ -157,6 +157,8 @@ export default {
   transition: all .3s
 .diancan
   flex: 1
+  padding-bottom: 50px
+  overflow: hidden
   display: flex
   .fix
     position: fixed

@@ -22,13 +22,13 @@ export default {
       name: '',
       pwd: '',
       captcha: '',
-      captcha_url: '',
+      url: '',
       num: 0
     }
   },
   async created() {
     this.num++
-    this.captcha_url = await reqCaptch(this.num)
+    this.url = await reqCaptch(this.num)
   },
   watch: {
     name(newvalue) {
@@ -45,6 +45,11 @@ export default {
     type() {
       if (this.yanjingObj['icon-biyanjing']) return 'password'
       return 'text'
+    },
+    captcha_url() {
+      let str = new RegExp('//([0-9]|\\.|:)*/', 'i')
+      console.log(str, str.exec(this.url))
+      return this.url.replace(/\/\/([0-9]|\.|:)*\//, `//${this.$serveHost}/`)
     }
   },
   methods: {
@@ -58,7 +63,7 @@ export default {
         this.num = 1
       }
       console.log(this.num)
-      this.captcha_url = await reqCaptch(this.num)
+      this.url = await reqCaptch(this.num)
     }
   }
 }

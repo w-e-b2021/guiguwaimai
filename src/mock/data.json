@@ -11,7 +11,7 @@
             "row_price|30-50": 19,
             "now_price": "",
             "discount": "@float(1,9,2,2)",
-            "img": "http://127.0.0.1:5500/public/shangjia_imgs/tu@integer(1,12).jpg",
+            "img": "/images/tu@integer(1,12).jpg",
             "distrip":"@csentence()"
         }]
     }]},
@@ -43,7 +43,7 @@
         "qisong|1": [15, 20, 25, 10],
         "delivery_tip": "@integer(2,5)",
         "deliveryer": "小象专送",
-        "banner_img": "http://127.0.0.1:5500/public/shangjia_imgs/banner.jpg",
+        "banner_img": "/images/banner.jpg",
         "activity|1-8": [{
             "name|+1": ["首单", "满减", "特价", "特价", "特价"],
             "content": "@csentence()"

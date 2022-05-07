@@ -3,7 +3,7 @@
     <HeaderTop title="我的"></HeaderTop>
     <router-link :to="userinfo._id ? '/userinfo' : '/login'" class="section-1">
       <div class="touxiang">
-        <img :src="'http://127.0.0.1:5500' + userinfo.person_img_url" alt="" v-if="userinfo.person_img_url" />
+        <img :src="`http://${$serveHost}/public/image/moren.png`" alt="" />
       </div>
       <div class="touxiang-right">
         <h3>{{ userinfo.person_name || userinfo._id || '登录/注册' }}</h3>
@@ -55,7 +55,9 @@
         </li>
       </ul>
     </section>
-    <mt-button type="danger" style="width: 100%; margin-top: 15px" @click="logout" v-if="userinfo._id">退出登录</mt-button>
+    <mt-button type="danger" style="width: 100%; margin-top: 15px" @click="logout" v-if="userinfo._id"
+      >退出登录</mt-button
+    >
   </div>
 </template>
 <script>

@@ -26,7 +26,7 @@ export default {}
 <style lang="stylus" scoped>
 .footer-container
    display: flex
-   justify-content: space-between
+   justify-content: space-around
    position: fixed
    width 100%
    left: 0
@@ -35,8 +35,7 @@ export default {}
    box-shadow: 0 -2px 5px -4px #808080
    background-color #fff
    .active
-     background-color skyblue
-     color: #fff
+     color: skyblue
   .hezi
   display: flex
   flex-direction: column

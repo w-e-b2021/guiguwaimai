@@ -39,6 +39,9 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 html,body,#app
   height 100%
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+body
+  font-size: 16px !important
 #app
   font-family Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

@@ -1,8 +1,8 @@
 <template>
   <div class="shop-footer">
     <FooterList :footer_foods="footer_foods" :showFoodList="showFoodList" :flag="flag"></FooterList>
-    <div @click="showFoodList" class="clearfis fix">
-      <div class="outer-xiaoche">
+    <div class="clearfis fix">
+      <div class="outer-xiaoche" @click="showFoodList">
         <div ref="xiaoche" class="xiaoche" :class="{ 'enough-green': footer_count }">
           <span class="iconfont icon-gouwucheman" :class="{ 'enough-green': footer_count }"></span>
           <div class="num-tip" v-show="footer_count">{{ footer_count }}</div>
@@ -21,8 +21,18 @@
       <div class="jiesuan" v-else-if="shangjia.qisong > footer_price">
         差¥{{ shangjia.qisong - footer_price }}元起送
       </div>
-      <div class="jiesuan enough-green" v-else>结算</div>
+      <div class="jiesuan enough-green" v-else @click="handlePay">结算</div>
     </div>
+    <mt-popup v-model="popupVisible" position="right">
+      <div class="login-title login-wid">
+        <h1>小象外卖</h1>
+      </div>
+      <mt-button class="login-wid" style="background-color: #0eb492" size="large" type="primary" @click="pay"
+        >微信支付</mt-button
+      >
+      <br />
+      <mt-button class="login-wid" size="large" type="primary" @click="pay">支付宝支付</mt-button>
+    </mt-popup>
   </div>
 </template>
 
@@ -30,16 +40,18 @@
 import { mapState, mapGetters } from 'vuex'
 
 import FooterList from '@/components/FooterList/FooterList.vue'
+import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
-      flag: false
+      flag: false,
+      popupVisible: false
     }
   },
   props: ['get_xiaocheleft', 'transition_after'],
   components: { FooterList },
   computed: {
-    ...mapState(['footer_foods', 'shangjia']),
+    ...mapState(['footer_foods', 'shangjia', 'userinfo']),
     ...mapGetters(['footer_count', 'footer_price'])
   },
   methods: {
@@ -47,6 +59,18 @@ export default {
       if (this.footer_count) {
         this.flag = !this.flag
       }
+    },
+    handlePay() {
+      if (this.userinfo._id) {
+        this.popupVisible = true
+      } else {
+        Toast('你还没有登录')
+        this.$router.push('/profil')
+      }
+    },
+    pay() {
+      Toast('支付成功')
+      this.popupVisible = false
     }
   },
   watch: {
@@ -70,6 +94,18 @@ export default {
   bottom: 0
   width: 100%
   height: 50px
+  .login-title
+    margin: 30px auto
+    h1
+      text-align: center
+      color: #009475
+      font-size: 40px
+  /deep/ .v-modal
+    width: 100%
+    background-color #fff
+    opacity 1
+  /deep/ .mint-popup-right
+    width 100%
   .fix
     background-color: #121c27
   .enough-green

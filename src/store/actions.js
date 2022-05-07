@@ -31,10 +31,11 @@ export default {
       console.log(data)
     }
   },
-  async receive_shops({ commit, state }) {
+  async receive_shops({ commit, state }, callback) {
     let { code, data } = await reqShops(state.jing, state.wei)
     if (code === 0) {
       commit(RECEIVE_SHOPS, data)
+      callback && callback()
     } else {
       console.log(data)
     }
@@ -71,7 +72,8 @@ export default {
   showalert({ commit }, value) {
     commit(SHOWALERT, value)
   },
-  getSearchShops({ commit }, value) {
-    commit(GET_SEARCHSHOPS, value)
+  getSearchShops({ commit }, { data, callback }) {
+    commit(GET_SEARCHSHOPS, data)
+    callback && callback()
   }
 }

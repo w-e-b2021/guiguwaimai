@@ -68,7 +68,6 @@ export default {
 <style lang="stylus" scoped>
 .shop-container
   height: 100%
-  padding-bottom: 50px
   box-sizing: border-box
   display: flex
   flex-direction: column

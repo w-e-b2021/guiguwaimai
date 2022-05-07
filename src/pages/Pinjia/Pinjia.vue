@@ -54,7 +54,7 @@
             <div class="per" v-for="(list, index) in lists" :key="index">
               <div class="per-left">
                 <div class="touxiang">
-                  <img src="http://127.0.0.1:5500/public/image/moren.png" />
+                  <img :src="`http://${$serveHost}/public/image/moren.png`" />
                 </div>
               </div>
               <div class="per-right">
@@ -208,9 +208,9 @@ export default {
 .sj-enter-active
   transition: all .3s
 .pinjia-container
+  flex: 1
   position relative
   overflow: hidden
-  height 460px
   background-color: rgba(219, 221, 223, 0.3)
   .shang
     display: flex

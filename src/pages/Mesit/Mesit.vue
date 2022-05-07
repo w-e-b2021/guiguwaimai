@@ -23,7 +23,7 @@
           <div class="swiper-slide" v-for="(category, index) in categorys" :key="index">
             <ul class="daohang">
               <li v-for="item in category" :key="item._id">
-                <img :src="baseURL + item.image_url" alt="" />
+                <img :src="'http://192.168.1.102:8080/net' + item.image_url" alt="" />
                 <p>{{ item.title }}</p>
               </li>
             </ul>
@@ -34,31 +34,34 @@
       </div>
       <img v-else src="./images/msite_back.svg" alt="" class="mesit_svg" />
     </nav>
-    <article class="shop-article" v-if="shops.length">
+    <article class="wrapper shop-article" v-show="shops.length">
       <div class="near-shop" :class="{ near: near }"><span class="iconfont icon-caidan"></span> 附近商家</div>
-      <ShopLists v-for="shop in shops" :key="shop._id" :shop="shop"></ShopLists>
+      <div class="content">
+        <ShopLists v-for="shop in shops" :key="shop._id" :shop="shop"></ShopLists>
+      </div>
     </article>
-    <template v-else>
+    <!-- <template v-else>
       <van-skeleton :row="3" style="margin-bottom: 15px" />
       <van-skeleton :row="3" style="margin-bottom: 15px" />
       <van-skeleton :row="3" style="margin-bottom: 15px" />
       <van-skeleton :row="3" style="margin-bottom: 15px" />
       <van-skeleton :row="3" style="margin-bottom: 15px" />
-    </template>
+    </template> -->
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import BScroll from '@better-scroll/core'
 import Swiper from 'swiper'
-import 'swiper/swiper-bundle.min.css'
+import 'swiper/css'
 
 import ShopLists from '@/components/ShopLists/ShopLists.vue'
+import { Toast } from 'mint-ui'
 export default {
   name: 'Mesit',
   data() {
     return {
-      baseURL: 'http://localhost:8080/api',
       near: false
     }
   },
@@ -70,9 +73,15 @@ export default {
   mounted() {
     this.$store.dispatch('receive_adress')
     this.$store.dispatch('receive_categorys')
-    this.$store.dispatch('receive_shops')
-    document.addEventListener('scroll', () => {
-      this.near = true
+    this.$store.dispatch('receive_shops', () => {
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.bscroll = new BScroll('.wrapper', {
+            click: true,
+            specifiedIndexAsContent: 1
+          })
+        }, 500)
+      })
     })
   },
   watch: {
@@ -99,7 +108,12 @@ export default {
 <style lang="stylus" scoped>
 @import '../../common/stylus/mixins.styl'
 .mesit-container
+  box-sizing: border-box
+  height 100%
   padding-top: 50px
+  padding-bottom: 40px
+  display: flex
+  flex-direction: column
   .mesit-left
     margin-left: 10px
   .mesit-right
@@ -125,13 +139,15 @@ export default {
       >span.swiper-pagination-bullet
         background #02a774
   .shop-article
-    overflow: scroll
-    height 390px
+    overflow: hidden
+    flex: 1
     .near-shop
-      top:0
+      position: relative
+      z-index: 3
       padding: 10px
       color: #afaeaf
       box-shadow: 0 2px 6px -4px #808080
+      background-color #fff
     .near
       background-color #fff
       span
