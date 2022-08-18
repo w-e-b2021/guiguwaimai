@@ -2,7 +2,9 @@
   <div class="shoplists-container">
     <router-link to="/shop">
       <div class="content">
-        <div class="content-left"><img v-lazy="'/api' + shop.img_url" alt="" /></div>
+        <div class="content-left">
+          <img v-lazy="`http://${$serveHost}/public/shangjia_imgs/tu${index}.jpg`" alt="" />
+        </div>
         <div class="content-right">
           <div class="left">
             <h3 class="shang">
@@ -35,7 +37,7 @@
 <script>
 import Stars from '@/components/Stars/Stars.vue'
 export default {
-  props: ['shop'],
+  props: ['shop', 'index'],
   components: {
     Stars
   }

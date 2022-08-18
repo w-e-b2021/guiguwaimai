@@ -23,7 +23,7 @@
           <div class="swiper-slide" v-for="(category, index) in categorys" :key="index">
             <ul class="daohang">
               <li v-for="item in category" :key="item._id">
-                <img :src="'http://192.168.1.102:8080/net' + item.image_url" alt="" />
+                <img :src="'http://' + $serveHost + item.image_url" alt="" />
                 <p>{{ item.title }}</p>
               </li>
             </ul>
@@ -37,7 +37,7 @@
     <article class="wrapper shop-article" v-show="shops.length">
       <div class="near-shop" :class="{ near: near }"><span class="iconfont icon-caidan"></span> 附近商家</div>
       <div class="content">
-        <ShopLists v-for="shop in shops" :key="shop._id" :shop="shop"></ShopLists>
+        <ShopLists v-for="(shop, index) in shops" :key="shop._id" :shop="shop" :index="++index"></ShopLists>
       </div>
     </article>
     <!-- <template v-else>

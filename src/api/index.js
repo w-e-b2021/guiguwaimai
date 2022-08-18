@@ -1,6 +1,7 @@
 import ajax from '@/api/ajax.js'
 const proxy_1 = '/api'
-const proxy_2 = '/net'
+// const proxy_2 = '/net'
+const proxy_2 = '/api'
 
 //1.根据经纬度过获取位置详情
 export const reqAddress = geohash => ajax(`${proxy_2}/position/${geohash}`)
@@ -13,8 +14,7 @@ export const reqSearchShops = keyWord => ajax(proxy_2 + '/search_shops', { keyWo
 //5.获取一次性验证码
 export const reqSendCode = phone => ajax(proxy_2 + '/sendcode', { phone })
 //6.用户名密码登录
-export const reqPwdLogin = ({ name, pwd, captcha }) =>
-  ajax(proxy_2 + '/login_pwd', { name, pwd, captcha }, 'post')
+export const reqPwdLogin = ({ name, pwd, captcha }) => ajax(proxy_2 + '/login_pwd', { name, pwd, captcha }, 'post')
 //7.手机号验证码登录
 export const reqSmsLogin = (phone, code) => ajax(proxy_2 + '/login_sms', { phone, code }, 'post')
 //8.根据会话获取用户信息

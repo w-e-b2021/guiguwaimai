@@ -1,9 +1,9 @@
 import axios from 'axios'
-let isLocal = false
+let isLocal = true
 const request = axios.create({
   //没有在这配置前缀应该是防止所有请求都走代理
   //给代理服务器发请求
-  baseURL: isLocal ? 'http://localhost:8080' : 'http://192.168.1.102:8080'
+  baseURL: isLocal ? 'http://localhost:8080' : 'http://120.79.28.190:5500'
 })
 
 export default function ajax(url, data = {}, type = 'get') {

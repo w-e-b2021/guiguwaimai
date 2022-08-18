@@ -20,10 +20,10 @@ Vue.component(Button.name, Button)
 Vue.component(Popup.name, Popup)
 Vue.use(Empty)
 Vue.use(Skeleton)
-//代理
-Vue.prototype.$host = '192.168.1.102:8080'
+//代理服务器
+Vue.prototype.$host = '120.79.28.190:5501'
 //本地后端
-Vue.prototype.$serveHost = '192.168.1.102:5500'
+Vue.prototype.$serveHost = 'localhost:5500'
 new Vue({
   router,
   store,

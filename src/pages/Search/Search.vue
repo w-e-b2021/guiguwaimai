@@ -9,7 +9,9 @@
       </section>
       <div class="wrapper" v-show="searchShops.length">
         <ul ref="content" class="content">
-          <li v-for="shop in searchShops" :key="shop._id"><ShopLists :shop="shop"></ShopLists></li>
+          <li v-for="(shop, index) in searchShops" :key="shop._id">
+            <ShopLists :shop="shop" :index="++index"></ShopLists>
+          </li>
         </ul>
       </div>
       <div class="mention" v-show="!searchShops.length">{{ mention_text }}</div>
