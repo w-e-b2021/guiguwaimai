@@ -36,5 +36,7 @@ npm run build
 
 #### 技术栈
 1. vue2+vue-router+vuex+axios+mock
-
-
+#### 预览
+![输入图片说明](static/5543196A1C4E2D7FEF039903BE2834BE.jpg)
+![输入图片说明](static/E220EA3F2934063827B5595DFFE0C2EF.jpg)
+![输入图片说明](static/EBB697AE345F05FA72E2B5D7C637F422.jpg)
